@@ -1,4 +1,5 @@
 /*global Phaser*/
+import * as ChangeScene from './ChangeScene.js';
 export default class BootScene extends Phaser.Scene {
   constructor () {
     super('Boot');
