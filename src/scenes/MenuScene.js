@@ -1,7 +1,8 @@
 /*global Phaser*/
-export default class BootScene extends Phaser.Scene {
+import * as ChangeScene from './ChangeScene.js';
+export default class MenuScene extends Phaser.Scene {
   constructor () {
-    super('Boot');
+    super('MenuScene');
   }
 
   init (data) {
@@ -18,10 +19,11 @@ export default class BootScene extends Phaser.Scene {
   }
 
   create (data) {
-    //add event listeners
+    //Add event listeners
     ChangeScene.addSceneEventListeners(this);
+
     //Create the scene
-    var logo = this.add.image(this.centerX, this.centerY, 'logo');
+    var text = this.add.text(this.centerX, this.centerY, 'Menu Scene');
   }
 
   update (time, delta) {
