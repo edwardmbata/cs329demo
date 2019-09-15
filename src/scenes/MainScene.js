@@ -16,6 +16,12 @@ export default class MainScene extends Phaser.Scene {
     this.load.spritesheet("adv", "./assets/sprites/jungle/spritesheet.png",{
       frameHeight: 68,
       frameWidth: 115
+
+    });
+    this.load.spritesheet("slime","./assets/sprites/slimesprite.png",{
+      frameHeight: 14,
+      frameWidth: 21
+
     });
 
 
@@ -53,20 +59,20 @@ export default class MainScene extends Phaser.Scene {
     //change size of screen
 
     //create the player
-    this.player = this.physics.add.sprite(37,50, "adv");
+    this.player = this.physics.add.sprite(37,50, "slime");
 
     this.physics.world.setBounds(0, 750, 1280, 210);
 
     //Create animiations from spriteSheet
     this.anims.create({
       key: "walk",
-      frame: this.anims.generateFrameNumbers("adv", {start: 7, end:13}),
+      frame: this.anims.generateFrameNumbers("slime", {start: 7, end:13}),
       frameRate:10,
       repeat:-1
     });
     this.anims.create({
       key: "idle",
-      frames: this.anims.generateFrameNumbers("adv", {start:0, end: 6}),
+      frames: this.anims.generateFrameNumbers("slime", {start:0, end: 6}),
       frameRate: 10,
       repeat: -1
     });
