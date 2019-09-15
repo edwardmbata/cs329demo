@@ -13,9 +13,9 @@ export default class MainScene extends Phaser.Scene {
     // Preload assets
 
     //spritesheet assets
-    this.load.spritesheet("adv", "./assets/spriteSheets/adventurer-v1.5-Sheet.png",{
-      frameHeight: 50,
-      frameWidth: 37
+    this.load.spritesheet("adv", "./assets/sprites/jungle/spritesheet.png",{
+      frameHeight: 68,
+      frameWidth: 115
     });
 
 
@@ -53,7 +53,8 @@ export default class MainScene extends Phaser.Scene {
     //change size of screen
 
     //create the player
-    this.player = this.physics.add.sprite(0,0, "adv");
+    this.player = this.physics.add.sprite(37,50, "adv");
+
     this.physics.world.setBounds(0, 750, 1280, 210);
 
     //Create animiations from spriteSheet
@@ -77,27 +78,6 @@ export default class MainScene extends Phaser.Scene {
 
   update (time, delta) {
     // Update the scene
-    var speed = 6;
 
-    //Create cursor keys and assign events
-    var cursors = this.input.keyboard.createCursorKeys();
-
-    if (cursors.left.isDown) {
-      this.player.x -= speed;
-      this.player.anims.play("walk", true);
-      this.player.flipX = true;
-    } else if (cursors.right.isDown) {
-      this.player.x += speed;
-      this.player.anims.play("walk", true);
-      this.player.flipX = false;
-    } else {
-      this.player.anims.play("idle", true);
-    }
-    if (cursors.up.isDown) {
-      this.player.y -= speed;
-    } else if (cursors.down.isDown) {
-      this.player.y += speed;
-    } else {
-    }
   }
 }
