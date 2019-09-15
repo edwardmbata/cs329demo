@@ -16,6 +16,16 @@ export default class MainScene extends Phaser.Scene {
     this.load.spritesheet("adv", "./assets/sprites/jungle/spritesheet.png",{
       frameHeight: 68,
       frameWidth: 115
+
+    });
+    this.load.spritesheet("slime","./assets/sprites/slimesprite.png",{
+      frameHeight: 14,
+      frameWidth: 21
+
+    });
+    this.load.spritesheet("player","./assets/sprites/player.png",{
+      frameHeight: 93,
+      frameWidth: 67
     });
 
 
@@ -53,21 +63,19 @@ export default class MainScene extends Phaser.Scene {
     //change size of screen
 
     //create the player
-    this.player = this.physics.add.sprite(37,50, "adv");
-
-    this.physics.world.setBounds(0, 750, 1280, 210);
-
+    this.player = this.physics.add.sprite(100,100, "slime");
+    this.player.setCollideWorldBounds(true);
     //Create animiations from spriteSheet
     this.anims.create({
-      key: "walk",
-      frame: this.anims.generateFrameNumbers("adv", {start: 7, end:13}),
-      frameRate:10,
-      repeat:-1
+      key: "idle",
+      frames: this.anims.generateFrameNumbers("slime", {start:0, end: 2}),
+      frameRate: 7.5,
+      repeat: -1
     });
     this.anims.create({
-      key: "idle",
-      frames: this.anims.generateFrameNumbers("adv", {start:0, end: 6}),
-      frameRate: 10,
+      key: "walk",
+      frames: this.anims.generateFrameNumbers("slime", {start:0, end: 11}),
+      frameRate: 15,
       repeat: -1
     });
 
@@ -78,6 +86,34 @@ export default class MainScene extends Phaser.Scene {
 
   update (time, delta) {
     // Update the scene
+    var speed = 2;
+
+    //Create cursor keys and assign addSceneEventListeners
+    var cursors = this.input.keyboard.createCursorKeys();
+
+    if(cursors.right.isDown){
+      this.player.x += speed;
+      this.player.flipX = false;
+      this.player.anims.play("walk",true);
+    }
+    else if(cursors.left.isDown){
+      this.player.x -=speed;
+      this.player.flipX = true;
+      this.player.anims.play("walk",true)
+    }else{
+      this.player.anims.play("idle", true);
+    }
+
+
+    if(cursors.up.isDown){
+      this.player.y -= 2;
+    }else if(cursors.down.isDown){
+      this.player.y += 2;
+    }else{
+
+    }
+
+
 
   }
 }
