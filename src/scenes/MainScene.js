@@ -60,6 +60,8 @@ export default class MainScene extends Phaser.Scene {
     const tileset = map.addTilesetImage("cavesofgallet_tiles","tiles");
     const layer = map.createStaticLayer("Tile Layer 1", tileset, 0, 0);
     layer.setCollisionByProperty({ collides: true});
+    layer.setCollisionBetween(8,44);
+    layer.setCollisionBetween(46,53);
 
     //DEBUGGING Layer
     const debugGraphics = this.add.graphics().setAlpha(0.75);
