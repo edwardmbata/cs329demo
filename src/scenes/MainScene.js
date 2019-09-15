@@ -59,12 +59,22 @@ export default class MainScene extends Phaser.Scene {
 
     const tileset = map.addTilesetImage("cavesofgallet_tiles","tiles");
     const layer = map.createStaticLayer("Tile Layer 1", tileset, 0, 0);
+    layer.setCollisionByProperty({ collides: true});
 
+    //DEBUGGING Layer
+    const debugGraphics = this.add.graphics().setAlpha(0.75);
+    layer.renderDebug(debugGraphics, {
+      tileColor: null, // Color of non-colliding tiles
+      collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), //Color of tiles
+      faceColor: new Phaser.Display.Color(40,39,37,255) // Color of face edges
+    });
     //change size of screen
 
     //create the player
-    this.player = this.physics.add.sprite(100,100, "slime");
+    this.player = this.physics.add.sprite(0,300, "slime");
     this.player.setCollideWorldBounds(true);
+    this.physics.add.collider(this.player,layer);
+
     //Create animiations from spriteSheet
     this.anims.create({
       key: "idle",
